@@ -13,9 +13,9 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label
+            <q-item-label
             :class="{ 'text-strike' : task.completed }"
-          >{{ task.name }}</q-item-label>
+            >{{ task.name }}</q-item-label>
         </q-item-section>
 
         <q-item-section side>
@@ -40,6 +40,17 @@
               </div>
           </div>
         </q-item-section>
+        <q-item-section side>
+            <q-btn
+                @click.stop="promptToDelete(id)"
+                flat
+                round
+                dense
+                color="red"
+                icon="delete"
+            />
+        </q-item-section>
+
       </q-item>
 </template>
 
@@ -49,7 +60,17 @@ import { mapActions } from 'vuex'
 export default {
   props: ['task', 'id'],
   methods: {
-    ...mapActions('tasks', ['updateTask'])
+    ...mapActions('tasks', ['updateTask', 'deleteTask']),
+    promptToDelete (id) {
+      this.$q.dialog({
+        title: 'Confirm',
+        message: 'Really delete?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.deleteTask(id)
+      })
+    }
   }
 }
 </script>
