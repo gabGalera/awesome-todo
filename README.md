@@ -1,6 +1,6 @@
 # Quasar App (awesome-todo)
 
-A Quasar Project
+A Quasar Project from classes in the Quasar V1: Cross-Platform Apps (with Vue 2, Vuex & Firebase) course
 
 ## Install the dependencies
 ```bash
